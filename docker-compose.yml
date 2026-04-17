@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/app
+    command: python app.py
+
+  worker:
+    build: .
+    volumes:
+      - .:/app
+    command: python worker.py
