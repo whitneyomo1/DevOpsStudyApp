@@ -1,0 +1,25 @@
+name: DevOpsStudyApp CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Docker
+      - name: Build Docker image
+        run: docker build -t devops-study-app .
+
+      # 3. Run container test
+      - name: Run container
+        run: |
+          docker run -d -p 8080:80 devops-study-app
+          sleep 10
+          curl http://localhost:8080 || exit 1
