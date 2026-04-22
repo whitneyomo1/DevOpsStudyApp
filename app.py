@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, jsonify
 import sqlite3
 
-from flask import Flask
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
@@ -117,6 +119,11 @@ def api_flashcards():
     ]
 
     return jsonify(flashcards)
+
+@app.route("/add", methods=["GET", "POST"])
+def add_flashcard():
+
+    logging.info("Add flashcard route called")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
