@@ -55,6 +55,7 @@ def add_flashcard():
         conn.commit()
         conn.close()  
         message = "Successfully added"
+        logging.info("Add flashcard route called")
         return render_template("add.html", message=message)
     
     return render_template("add.html")
@@ -119,11 +120,6 @@ def api_flashcards():
     ]
 
     return jsonify(flashcards)
-
-@app.route("/add", methods=["GET", "POST"])
-def add_flashcard():
-
-    logging.info("Add flashcard route called")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
