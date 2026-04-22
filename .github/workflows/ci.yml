@@ -14,6 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: List files
+        run: ls -la  
+
     #2. Set up docker
       - name: Build Docker image
         run: docker build -t devops-study-app .
@@ -23,4 +26,8 @@ jobs:
         run: |
           docker run -d -p 80:80 --name app devops-study-app
           sleep 10
-          curl http://localhost:80 || exit 1
+          docker ps -a
+          docker logs app
+          curl -v http://localhost:80 || exit 1
+
+      
