@@ -24,7 +24,8 @@ body {
 /* Headings */
 h2 {
     text-align: center;
-    color: #007bff;
+    /* color: #007bff; */
+    color: red;
     margin-bottom: 30px;
 }
 
